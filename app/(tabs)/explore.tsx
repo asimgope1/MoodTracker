@@ -1,110 +1,165 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React, { useEffect } from "react";
+import {
+	Image,
+	Platform,
+	StyleSheet,
+	TouchableOpacity,
+	AccessibilityInfo,
+	GestureResponderEvent,
+} from "react-native";
 
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
+import { Collapsible } from "@/components/Collapsible";
+import { ExternalLink } from "@/components/ExternalLink";
+import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { IconSymbol } from "@/components/ui/IconSymbol";
+import { router } from "expo-router";
 
-export default function TabTwoScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image source={require('@/assets/images/react-logo.png')} style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user&apos;s current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
-  );
-}
+const TabTwoScreen: React.FC = () => {
+	useEffect(() => {
+		AccessibilityInfo.announceForAccessibility(
+			"Explore Mindfulness screen loaded",
+		);
+	}, []);
+
+	const handleJournalPress = (event: GestureResponderEvent) => {
+		router.push("../daily-journals");
+	};
+
+	return (
+		<ParallaxScrollView
+			headerBackgroundColor={{ light: "#E6F2EF", dark: "#1C1F1E" }}
+			headerImage={
+				<IconSymbol
+					size={310}
+					color='#A0CFC5'
+					name='leaf'
+					style={styles.headerImage}
+					accessibilityRole='image'
+					accessibilityLabel='Decorative leaf icon for mindfulness'
+					importantForAccessibility='no-hide-descendants'
+				/>
+			}
+			accessibilityRole='scrollbar'
+			accessibilityLabel='Mindfulness content with sections'>
+			<ThemedView style={styles.titleContainer}>
+				<ThemedText
+					type='title'
+					accessibilityRole='header'
+					accessibilityLevel={1}>
+					Explore Mindfulness
+				</ThemedText>
+			</ThemedView>
+
+			<ThemedText style={styles.introText}>
+				Nurture your mental well-being with guided journaling, calming quotes,
+				and mood reflections.
+			</ThemedText>
+
+			<Collapsible title='Mood Tracking'>
+				<ThemedText>
+					Track your emotions daily and visualize trends in your well-being.
+					Mood tracking helps build self-awareness and emotional resilience.
+				</ThemedText>
+			</Collapsible>
+
+			<Collapsible title='Daily Journaling'>
+				<ThemedText>
+					Write down your thoughts and feelings in a safe space. Journaling
+					encourages mindfulness and clarity.
+				</ThemedText>
+				<TouchableOpacity
+					onPress={handleJournalPress}
+					accessibilityRole='link'
+					accessibilityHint='Navigates to your journal entries'
+					style={styles.linkTouchable}
+					activeOpacity={0.7}>
+					<ThemedText style={styles.linkText}>
+						Your journals are here →
+					</ThemedText>
+				</TouchableOpacity>
+			</Collapsible>
+
+			<Collapsible title='Inspirational Quotes'>
+				<ThemedText>
+					Start your day with calming and inspiring words curated to support
+					your mindfulness journey.
+				</ThemedText>
+				{/* Optionally add image with alt text */}
+				{/* <Image
+          source={require("@/assets/images/mindful-quote.png")}
+          style={styles.quoteImage}
+          accessibilityRole="image"
+          accessibilityLabel="Inspirational quote illustration"
+        /> */}
+			</Collapsible>
+
+			<Collapsible title='Wellness Tips'>
+				<ThemedText>
+					Get helpful tips on breathing exercises, grounding techniques, and
+					ways to manage stress effectively.
+				</ThemedText>
+				<ExternalLink href='https://www.headspace.com/mindfulness'>
+					<ThemedText type='link'>What is mindfulness?</ThemedText>
+				</ExternalLink>
+			</Collapsible>
+
+			<Collapsible title='Themes & Accessibility'>
+				<ThemedText>
+					Enjoy light and dark themes designed to reduce eye strain and support
+					your environment. Fully accessible and calming UI.
+				</ThemedText>
+			</Collapsible>
+
+			<Collapsible title='Gentle Animations'>
+				<ThemedText>
+					Our animations are designed to be subtle and soothing, enhancing your
+					experience without distraction.
+				</ThemedText>
+				{Platform.select({
+					ios: (
+						<ThemedText>
+							Try the parallax header on iOS for a subtle depth effect as you
+							scroll.
+						</ThemedText>
+					),
+				})}
+			</Collapsible>
+		</ParallaxScrollView>
+	);
+};
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
-  },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
-  },
+	headerImage: {
+		color: "#A0CFC5",
+		bottom: -90,
+		left: -35,
+		position: "absolute",
+	},
+	titleContainer: {
+		flexDirection: "row",
+		gap: 8,
+		marginBottom: 8,
+	},
+	introText: {
+		marginBottom: 16,
+		fontSize: 16,
+		lineHeight: 24,
+	},
+	linkTouchable: {
+		marginTop: 8,
+	},
+	linkText: {
+		color: "#2196F3",
+		fontWeight: "600",
+	},
+	quoteImage: {
+		alignSelf: "center",
+		height: 100,
+		width: 100,
+		marginTop: 12,
+	},
 });
+
+export default TabTwoScreen;

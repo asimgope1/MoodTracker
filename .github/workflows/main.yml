@@ -22,35 +22,10 @@ jobs:
 
       - name: Authenticate with EAS
         env:
-          EXPO_TOKEN: 0zxe86_6a6Q7rArEGxZnsbgxlpS1hXdCW7KiRjv3
+          EAS_ACCESS_TOKEN: 0zxe86_6a6Q7rArEGxZnsbgxlpS1hXdCW7KiRjv3
         run: eas whoami || echo "Authenticated"
 
       - name: Build Android (Production)
         env:
-          EXPO_TOKEN: 0zxe86_6a6Q7rArEGxZnsbgxlpS1hXdCW7KiRjv3
+          EAS_ACCESS_TOKEN: 0zxe86_6a6Q7rArEGxZnsbgxlpS1hXdCW7KiRjv3
         run: eas build --platform android --profile production --non-interactive
-
-  build_ios:
-    name: iOS Production Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install EAS CLI
-        run: npm install -g eas-cli
-
-      - name: Authenticate with EAS
-        env:
-          EXPO_TOKEN: 0zxe86_6a6Q7rArEGxZnsbgxlpS1hXdCW7KiRjv3
-        run: eas whoami || echo "Authenticated"
-
-      - name: Build iOS (Production)
-        env:
-          EXPO_TOKEN: 0zxe86_6a6Q7rArEGxZnsbgxlpS1hXdCW7KiRjv3
-        run: eas build --platform ios --profile production --non-interactive

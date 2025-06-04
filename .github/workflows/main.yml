@@ -22,10 +22,10 @@ jobs:
 
       - name: Authenticate with EAS
         env:
-          EAS_ACCESS_TOKEN: 0zxe86_6a6Q7rArEGxZnsbgxlpS1hXdCW7KiRjv3
+          EXPO_TOKEN: 0zxe86_6a6Q7rArEGxZnsbgxlpS1hXdCW7KiRjv3
         run: eas whoami || echo "Authenticated"
 
       - name: Build Android (Production)
         env:
-          EAS_ACCESS_TOKEN: 0zxe86_6a6Q7rArEGxZnsbgxlpS1hXdCW7KiRjv3
+          EXPO_TOKEN: 0zxe86_6a6Q7rArEGxZnsbgxlpS1hXdCW7KiRjv3
         run: eas build --platform android --profile production --non-interactive

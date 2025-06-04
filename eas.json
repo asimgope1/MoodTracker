@@ -1,4 +1,7 @@
 {
+	"cli": {
+		"appVersionSource": "project"
+	},
 	"build": {
 		"development": {
 			"developmentClient": true,
@@ -8,6 +11,8 @@
 			"distribution": "internal"
 		},
 		"production": {
+			"developmentClient": false,
+			"distribution": "store",
 			"android": {
 				"buildType": "apk"
 			},

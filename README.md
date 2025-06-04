@@ -4,6 +4,44 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
 ## Get started
 
+
+# 🌿 MoodTracker - A Mindful Journaling App
+
+A calming, accessible mobile app built with React Native + Expo to help users reflect on their mood, write daily journal entries, and stay inspired with wellness quotes and tips.
+
+---
+
+## 🛠 Technologies Used
+
+- **React Native** (via Expo SDK)
+- **Expo Router** for file-based navigation
+- **TypeScript** for type safety
+- **Expo Image** for optimized image rendering
+- **React Native Gesture Handler** for smooth interaction
+- **AsyncStorage** for local data persistence
+- **Custom Hooks and Components** for modular, clean code
+
+---
+
+## 🎨 Design Rationale
+
+The design centers around **calmness, clarity, and consistency**:
+- **Soft pastel colors** (e.g., `#e1f4f9`) to evoke calm and focus
+- **Clear typography hierarchy** for readability
+- **Accessible interactions** with generous touch targets and contrast
+- Modular components like `MoodSelector`, `JournalInput`, and `QuoteCard` help keep screens clean and focused
+
+---
+
+## 🚀 How to Run the App Locally
+
+1. **Clone the repo**:
+   ```bash
+
+   git clone https://github.com/asimgope1/MoodTracker.git
+   cd MoodTracker
+
+
 1. Install dependencies
 
    ```bash
